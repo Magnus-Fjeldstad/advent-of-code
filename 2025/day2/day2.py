@@ -5,7 +5,7 @@ def parse_input(path):
         return [(int(a), int(b)) for a, b in (p.split("-") for p in parts)]
 
 
-id_range = parse_input("./2025/day2/input_day_2.txt")
+id_range = parse_input("input_day_2.txt")
 
 
 def get_range(id_ranges):
@@ -40,12 +40,12 @@ def get_invalid_ids(range):
 
 def is_repeated_pattern(s):
     n = len(s)
-    for k in range(1, n // 2 + 1):
+    for splits in range(1, n // 2 + 1):
 
-        if n % k != 0:
+        if n % splits != 0:
             continue
-        pattern = s[:k]
-        if pattern * (n // k) == s:
+        pattern = s[:splits]
+        if pattern * (n // splits) == s:
             return True
     return False
 
@@ -60,5 +60,7 @@ def get_invalid_sum(ranges):
     return total
 
 
-answer = get_invalid_sum(id_range)
-print(answer)
+answer1 = get_invalid_ids(all_num_range)
+answer2 = get_invalid_sum(id_range)
+
+print(answer1, answer2)
